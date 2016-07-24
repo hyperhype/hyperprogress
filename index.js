@@ -16,6 +16,7 @@ module.exports = function (steps) {
   var error = create('pre', 'hyperprogress__error')
   var liquid = create('div', 'hyperprogress__liquid', ['.'])
   var bar = create('div', 'hyperprogress__bar', [liquid])
+  liquid.style.width = '0%'
 
   var n = 0
 
@@ -28,7 +29,7 @@ module.exports = function (steps) {
 
   prog.complete = function () {
     liquid.style.width = '100%'
-    progress.classList.add('hyperprogress--complete')
+    prog.classList.add('hyperprogress--complete')
   }
 
   prog.next = function (name) {
@@ -46,12 +47,21 @@ module.exports = function (steps) {
   }
 
   prog.fail = function (err) {
-    progress.classList.add('hyperprogress--failed')
+    prog.classList.add('hyperprogress--failed')
     list.lastChild.classList.add('hyperprogress--error')
     if(err && err.stack)
       error.textContent = err.stack
   }
 
+  prog.reset = function () {
+    n = 0
+    error.innerHTML = list.innerHTML = ''
+    liquid.style.width = '0%'
+    return prog
+  }
+
   return prog
 }
+
+
 
