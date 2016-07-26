@@ -1,7 +1,7 @@
 {
   "name": "hyperprogress",
   "description": "lightweight progressbar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dominictarr/hyperprogress",
   "repository": {
     "type": "git",
