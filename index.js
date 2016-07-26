@@ -51,6 +51,10 @@ module.exports = function (steps) {
     list.lastChild.classList.add('hyperprogress--error')
     if(err && err.stack)
       error.textContent = err.stack
+    else if(err && err.name && err.message)
+      error.textContent = err.name + ': ' + err.message
+    else
+      error.textContent = JSON.stringify(err)
   }
 
   prog.reset = function () {
@@ -62,6 +66,7 @@ module.exports = function (steps) {
 
   return prog
 }
+
 
 
 
